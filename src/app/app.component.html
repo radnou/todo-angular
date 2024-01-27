@@ -1,4 +1,13 @@
 <h1>{{ title }}</h1>
+<label for="addItemInput">What do you want to add to the task list today ? </label>
+
+<input
+  #newItem
+  (keyup.enter)="addItem(newItem.value); newItem.value = ''"
+  class="lg-text-input"
+  id="addItemInput"
+  placeholder="add an item"/>
+<button (click)="addItem(newItem.value);newItem.value = ''" class="btn-primary" type="button">Add</button>
 
 <ul>
   <li *ngFor="let item of getItems()">{{ item.description }}</li>
