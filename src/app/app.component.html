@@ -8,15 +8,37 @@
   id="addItemInput"
   placeholder="add an item"/>
 <button (click)="addItem(newItem.value);newItem.value = ''" class="btn-primary" type="button">Add</button>
+<!-- Buttons that show all, still to do, or done items on click -->
+<div class="btn-wrapper">
+  <button
+    (click)="filter = 'all'"
+    [class.active]="filter == 'all'"
+    class="btn btn-menu">
+    All
+  </button>
 
+  <button
+    (click)="filter = 'active'"
+    [class.active]="filter == 'active'"
+    class="btn btn-menu">
+    To Do
+  </button>
+
+  <button
+    (click)="filter = 'done'"
+    [class.active]="filter == 'done'"
+    class="btn btn-menu">
+    Done
+  </button>
+</div>
 <h2>
-  {{ items.length }}
+  {{ getItems().length }}
   <span *ngIf="items.length === 1; else elseBlock">item</span>
   <ng-template #elseBlock>items</ng-template>
 </h2>
 
 <ul>
-  <li *ngFor="let i of items">
+  <li *ngFor="let i of getItems()">
     <app-item (remove)="remove(i)" [item]="i"></app-item>
   </li>
 </ul>
