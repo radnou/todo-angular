@@ -6,8 +6,25 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'todo';
+
+  filter: 'done' | 'active' | 'all' = 'all';
+
+  allItems = [
+    { description: 'eat', done: false },
+    { description: 'walk', done: true },
+    { description: 'wake up', done: true },
+  ];
+
+  getItems() {
+    if (this.filter === 'all') {
+      return this.allItems;
+    }
+    return this.allItems.filter((item) =>
+      this.filter === 'done' ? item.done : !item.done,
+    );
+  }
 }
