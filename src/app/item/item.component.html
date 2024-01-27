@@ -1,0 +1,36 @@
+<div class="item">
+  <input
+    (change)="item.done = !item.done"
+    [checked]="item.done"
+    [id]="item.description"
+    type="checkbox"/>
+  <label [for]="item.description">{{ item.description }}</label>
+
+  @if (!editable) {
+    <div class="btn-wrapper">
+      <button (click)="editable = !editable" class="btn">Edit</button>
+      <button (click)="remove.emit()" class="btn btn-warn">Delete</button>
+    </div>
+
+  }
+
+  <!-- This section shows only if user clicks Edit button -->
+  @if (editable) {
+    <div>
+      <input
+        #editedItem
+        (keyup.enter)="saveItem(editedItem.value)"
+        [value]="item.description"
+        class="sm-text-input"
+        placeholder="edit item"/>
+
+      <div class="btn-wrapper">
+        <button (click)="editable = !editable" class="btn">Cancel</button>
+        <button (click)="saveItem(editedItem.value)" class="btn btn-save">
+          Save
+        </button>
+      </div>
+    </div>
+  }
+
+</div>

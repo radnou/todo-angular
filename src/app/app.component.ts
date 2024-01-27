@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Item } from './item';
+import { ItemComponent } from './item/item.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ItemComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -12,25 +14,24 @@ export class AppComponent {
   title = 'todo';
 
   filter: 'done' | 'active' | 'all' = 'all';
-
-  allItems = [
-    { description: 'eat', done: false },
-    { description: 'walk', done: true },
-    { description: 'wake up', done: true },
-  ];
+  items: Item[] = [];
 
   getItems() {
     if (this.filter === 'all') {
-      return this.allItems;
+      return this.items;
     }
-    return this.allItems.filter((item) =>
+    return this.items.filter((item) =>
       this.filter === 'done' ? item.done : !item.done,
     );
   }
 
   addItem(description: string) {
     if (description.trim().length > 0) {
-      this.allItems.unshift({ description, done: false });
+      this.items.unshift({ description, done: false });
     }
+  }
+
+  remove(item: Item) {
+    this.items.splice(this.items.indexOf(item), 1);
   }
 }
