@@ -33,8 +33,11 @@
 </div>
 <h2>
   {{ getItems().length }}
-  <span *ngIf="items.length === 1; else elseBlock">item</span>
-  <ng-template #elseBlock>items</ng-template>
+  @if (items.length === 0 || items.length === 1) {
+    <span>item</span>
+  } @else {
+    <span>items</span>
+  }
 </h2>
 
 <ul>

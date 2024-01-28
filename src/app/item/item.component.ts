@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../item';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-item',
   standalone: true,
-  imports: [NgIf],
+  imports: [],
   templateUrl: './item.component.html',
   styleUrl: './item.component.css',
 })
