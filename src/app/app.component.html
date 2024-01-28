@@ -38,8 +38,10 @@
 </h2>
 
 <ul>
-  <li *ngFor="let i of getItems()">
-    <app-item (remove)="remove(i)" [item]="i"></app-item>
-  </li>
+  @for (i of getItems(); track i.description) {
+    <li>
+      <app-item (remove)="remove(i)" [item]="i"></app-item>
+    </li>
+  }
 </ul>
 
