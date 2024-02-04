@@ -33,7 +33,7 @@
 </div>
 <h2>
   {{ getItems().length }}
-  @if (items.length === 0 || items.length === 1) {
+  @if (items.length <= 1) {
     <span>item</span>
   } @else {
     <span>items</span>
